@@ -108,8 +108,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Camera: {fileID: 2000000}
   motionBob:
-    HorizontalBobRange: 0.1
-    VerticalBobRange: 0.05
+    HorizontalBobRange: 0
+    VerticalBobRange: 0
     Bobcurve:
       serializedVersion: 2
       m_Curve:
@@ -164,7 +164,7 @@ MonoBehaviour:
     VerticaltoHorizontalRatio: 2
   jumpAndLandingBob:
     BobDuration: 0.15
-    BobAmount: 0.2
+    BobAmount: 0
   rigidbodyFirstPersonController: {fileID: 11400004}
   StrideInterval: 4
   RunningStrideLengthen: 0.722
