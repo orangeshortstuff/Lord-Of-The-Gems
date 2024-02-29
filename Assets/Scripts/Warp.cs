@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+// using UnityEngine.SceneManagement;
 
 // teleports within a scene
 public class Warp : MonoBehaviour
@@ -12,7 +12,7 @@ public class Warp : MonoBehaviour
     void Start()
     {
         player = GameObject.FindWithTag("Player"); // the player
-        destination = transform.GetChild(0); // transform of the (only) child object
+        destination = transform.GetChild(0); // transform of the first child object (the warp)
     }
 
     // Update is called once per frame
