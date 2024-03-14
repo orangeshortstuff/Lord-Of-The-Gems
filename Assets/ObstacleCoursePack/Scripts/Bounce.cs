@@ -20,14 +20,6 @@ public class Bounce : MonoBehaviour
 				return;
 			}
 		}
-		/*if (collision.relativeVelocity.magnitude > 2)
-		{
-			if (collision.gameObject.tag == "Player")
-			{
-				//Debug.Log("Hit");
-				collision.gameObject.GetComponent<CharacterControls>().HitPlayer(-hitDir*force, stunTime);
-			}
-			//audioSource.Play();
-		}*/
+		
 	}
 }
