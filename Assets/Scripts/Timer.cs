@@ -10,6 +10,7 @@ public class Timer : MonoBehaviour
     float startTime;
     public float timeLimit;
     WinManager wm;
+    public float penalties;
     
     void Start() 
     {
@@ -18,6 +19,7 @@ public class Timer : MonoBehaviour
         time = 0;
         timeLimit = 360;
         startTime = Time.time;
+        penalties = 0;
     }
 
     void Update() 
@@ -25,7 +27,7 @@ public class Timer : MonoBehaviour
         if (wm.won || wm.lost) {
             return;
         }
-        time = Time.time - startTime;
+        time = Time.time - startTime + penalties;
         float timeLeft = timeLimit - time;
         if (timeLeft < 0) {
             wm.lost = true;

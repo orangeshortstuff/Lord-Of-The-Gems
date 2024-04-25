@@ -2,7 +2,6 @@
 using System.Collections;
 using UnityStandardAssets.Characters.FirstPerson;
 
-
 public class CharacterControls : MonoBehaviour
 {
     public float speed = 10.0f;
