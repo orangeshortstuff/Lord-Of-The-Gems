@@ -1,11 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityStandardAssets.Characters.FirstPerson;
-
+using UnityEngine.Windows;
+using Input = UnityEngine.Input;
+using UnityEditor;
 
 public class CharacterControls : MonoBehaviour
 {
-    public float speed = 10.0f;
+    public float speed = 5.0f;
+    public float runSpeed = 10.0f;
     public float airVelocity = 8f;
     public float gravity = 10.0f;
     public float maxVelocityChange = 10.0f;
@@ -29,6 +32,17 @@ public class CharacterControls : MonoBehaviour
 
     private Camera cam; // Declare the cam variable
 
+    // Audio variables
+    public AudioClip[] footstepSounds;
+    // Step interval variables
+    public float stepInterval = 0.5f; 
+    private float nextStepTime = 0f;
+    public AudioClip jumpSound;
+    public AudioClip landSound;
+    private AudioSource audioSource;
+
+    private bool isWalking;
+
     void Start()
     {
         // get the distance to ground
@@ -41,6 +55,9 @@ public class CharacterControls : MonoBehaviour
 
         // Initialize the mouseLook object
         mouseLook.Init(transform, cam.transform);
+
+        // Get reference to AudioSource component
+        audioSource = GetComponent<AudioSource>();
 
         Cursor.visible = false;
     }
@@ -130,23 +147,66 @@ public class CharacterControls : MonoBehaviour
 
     private void Update()
     {
+        // Input handling for mouse movement
         float h = Input.GetAxis("Mouse X");
         float v = Input.GetAxis("Mouse Y");
         RotateView(h, v);
 
+        // Input handling for movement
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
 
         Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
         moveDir = cam.transform.TransformDirection(movement).normalized;
 
+        // Check if sprint key is pressed
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            SetSprint();
+        }
+        else if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            speed = 5.0f;
+        }
+
+        // Check if character is on a slide
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, -Vector3.up, out hit, distToGround + 0.1f))
+        if (Physics.Raycast(transform.position, -Vector3.up, out hit, GetComponent<Collider>().bounds.extents.y + 0.1f))
         {
             slide = hit.transform.CompareTag("Slide");
         }
+
+        // If there's no movement input, reset the moveDir vector to zero
+        if (moveHorizontal == 0 && moveVertical == 0)
+        {
+            moveDir = Vector3.zero;
+        }
+
+        // Play footstep sounds
+        if (isWalking && IsGrounded() && Time.time > nextStepTime)
+        {
+            PlayFootstepAudio();
+            nextStepTime = Time.time + stepInterval; // Update next step time
+        }
     }
 
+    // Play footstep sounds
+    void PlayFootstepAudio()
+    {
+        if (footstepSounds.Length == 0)
+            return;
+
+        // Randomly select a footstep sound from the array
+        int index = Random.Range(0, footstepSounds.Length);
+        audioSource.clip = footstepSounds[index];
+        audioSource.PlayOneShot(audioSource.clip);
+    }
+
+    void SetSprint()
+    {
+        speed = runSpeed;
+    }
+    
     float CalculateJumpVerticalSpeed()
     {
         // From the jump height and gravity we deduce the upwards speed 

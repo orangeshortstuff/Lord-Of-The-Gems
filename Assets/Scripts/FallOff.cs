@@ -9,6 +9,7 @@ public class FallOff : MonoBehaviour
     public Vector3 spawn; // the starting position of the player
     private Rigidbody rb; // player's rigidbody
     public ScoreManager sm;
+    public Timer timer;
 
     // Start is called before the first frame update
     void Start()
@@ -16,6 +17,8 @@ public class FallOff : MonoBehaviour
         spawn = gameObject.transform.position;
         rb = GetComponent<Rigidbody>();
         sm = GameObject.Find("score").GetComponent<ScoreManager>();
+        timer = GameObject.Find("timer").GetComponent<Timer>();
+
     }
 
     // Update is called once per frame
@@ -50,6 +53,7 @@ public class FallOff : MonoBehaviour
             // respawn the player, at last
             gameObject.transform.position = spawn;
             rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
+            timer.penalties += 10; // and take 10 seconds off the timer
         }
     }
 }
