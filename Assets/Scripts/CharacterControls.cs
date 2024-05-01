@@ -81,6 +81,7 @@ public class CharacterControls : MonoBehaviour
         Cursor.visible = false;
 
         currentStamina = maxStamina;
+        staminaSlider = GameObject.Find("Stamina").GetComponent<Slider>();
         staminaSlider.maxValue = maxStamina;
     }
 
