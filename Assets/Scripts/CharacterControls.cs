@@ -4,6 +4,7 @@ using UnityStandardAssets.Characters.FirstPerson;
 using UnityEngine.Windows;
 using Input = UnityEngine.Input;
 using UnityEditor;
+using UnityEngine.UI;
 
 public class CharacterControls : MonoBehaviour
 {
@@ -14,6 +15,16 @@ public class CharacterControls : MonoBehaviour
     public float maxVelocityChange = 10.0f;
     public float jumpHeight = 2.0f;
     public float maxFallSpeed = 20.0f;
+    public float standingHeight = 2f; // Height of the character when standing
+    public float crouchingHeight = 1f; // Height of the character when crouching
+    public float crouchingSpeed = 2.5f;
+    public float crouchSpeedMultiplier = 0.5f; // Movement speed multiplier when crouching
+    public float sprintSpeed = 10.0f; // Sprinting movement speed
+    public float crouchedSprintSpeed = 5.0f; // Sprinting movement speed when crouched
+    public Slider staminaSlider;
+
+    private bool isCrouching = false;
+    private float originalHeight;
 
     private Vector3 moveDir;
     private Rigidbody rb;
@@ -43,6 +54,13 @@ public class CharacterControls : MonoBehaviour
 
     private bool isWalking;
 
+    public float maxStamina = 100f;
+    public float currentStamina;
+    public float staminaRegenRate = 5f; // Stamina regenerated per second
+    public float sprintStaminaCost = 25f; // Stamina cost per second while sprinting
+    private bool isSprinting = false;
+
+
     void Start()
     {
         // get the distance to ground
@@ -52,6 +70,7 @@ public class CharacterControls : MonoBehaviour
 
         // Assign the main camera to the cam variable
         cam = Camera.main;
+        originalHeight = transform.localScale.y;
 
         // Initialize the mouseLook object
         mouseLook.Init(transform, cam.transform);
@@ -60,6 +79,9 @@ public class CharacterControls : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
 
         Cursor.visible = false;
+
+        currentStamina = maxStamina;
+        staminaSlider.maxValue = maxStamina;
     }
 
 
@@ -147,6 +169,8 @@ public class CharacterControls : MonoBehaviour
 
     private void Update()
     {
+        UpdateStaminaSlider();
+
         // Input handling for mouse movement
         float h = Input.GetAxis("Mouse X");
         float v = Input.GetAxis("Mouse Y");
@@ -159,14 +183,22 @@ public class CharacterControls : MonoBehaviour
         Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
         moveDir = cam.transform.TransformDirection(movement).normalized;
 
-        // Check if sprint key is pressed
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        // Check if the "C" key is held down
+        if (Input.GetKey(KeyCode.C))
         {
-            SetSprint();
+            StartCrouch();
         }
-        else if (Input.GetKeyUp(KeyCode.LeftShift))
+        else
         {
-            speed = 5.0f;
+            StopCrouch();
+        }
+
+        
+        // Stamina regeneration
+        if (!isSprinting && currentStamina < maxStamina)
+        {
+            currentStamina += staminaRegenRate * Time.deltaTime;
+            currentStamina = Mathf.Clamp(currentStamina, 0f, maxStamina);
         }
 
         // Check if character is on a slide
@@ -188,8 +220,65 @@ public class CharacterControls : MonoBehaviour
             PlayFootstepAudio();
             nextStepTime = Time.time + stepInterval; // Update next step time
         }
+
+        // Sprinting
+        if (Input.GetKeyDown(KeyCode.LeftShift) && currentStamina > 0)
+        {
+            SetSprint(true);
+        }
+        else if (Input.GetKeyUp(KeyCode.LeftShift) || currentStamina <= 0)
+        {
+            SetSprint(false);
+        }
+
+        // Stamina regeneration
+        if (!isSprinting && currentStamina < maxStamina)
+        {
+            currentStamina += staminaRegenRate * Time.deltaTime;
+            currentStamina = Mathf.Clamp(currentStamina, 0f, maxStamina);
+        }
     }
 
+    void UpdateStaminaSlider()
+    {
+        // Update the stamina slider value
+        staminaSlider.value = currentStamina;
+    }
+
+    void StartCrouch()
+    {
+        if (!isCrouching)
+        {
+            isCrouching = true;
+
+            // Reduce the height of the character
+            transform.localScale = new Vector3(transform.localScale.x, crouchingHeight, transform.localScale.z);
+
+            // Optionally adjust camera position if needed
+            // For example, lower the camera position to match the new height
+
+            // Optionally adjust movement speed
+            // For example, reduce movement speed when crouching
+            speed *= crouchSpeedMultiplier;
+        }
+    }
+    void StopCrouch()
+    {
+        if (isCrouching)
+        {
+            isCrouching = false;
+
+            // Restore the height of the character
+            transform.localScale = new Vector3(transform.localScale.x, standingHeight, transform.localScale.z);
+
+            // Optionally adjust camera position if needed
+            // For example, raise the camera position to match the standing height
+
+            // Optionally restore movement speed
+            // For example, restore the original movement speed
+            speed /= crouchSpeedMultiplier;
+        }
+    }
     // Play footstep sounds
     void PlayFootstepAudio()
     {
@@ -202,19 +291,37 @@ public class CharacterControls : MonoBehaviour
         audioSource.PlayOneShot(audioSource.clip);
     }
 
-    void SetSprint()
+    void SetSprint(bool sprint)
     {
-        speed = runSpeed;
-    }
-    
-    float CalculateJumpVerticalSpeed()
-    {
-        // From the jump height and gravity we deduce the upwards speed 
-        // for the character to reach at the apex.
-        return Mathf.Sqrt(2 * jumpHeight * gravity);
+        isSprinting = sprint;
+        if (sprint)
+        {
+            StartCoroutine(Sprint());
+        }
     }
 
-    private void RotateView(float horizontalInput, float verticalInput)
+    IEnumerator Sprint()
+    {
+        float sprintSpeedToUse = isCrouching ? crouchedSprintSpeed : runSpeed;
+
+        while (isSprinting && currentStamina > 0)
+        {
+            speed = sprintSpeedToUse;
+            currentStamina -= sprintStaminaCost * Time.deltaTime;
+            yield return null;
+        }
+
+        speed = isCrouching ? crouchingSpeed : 5.0f;
+    }
+
+        float CalculateJumpVerticalSpeed()
+        {
+            // From the jump height and gravity we deduce the upwards speed 
+            // for the character to reach at the apex.
+            return Mathf.Sqrt(2 * jumpHeight * gravity);
+        }
+
+        private void RotateView(float horizontalInput, float verticalInput)
     {
         mouseLook.LookRotation(transform, cam.transform);
 
