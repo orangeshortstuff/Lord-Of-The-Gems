@@ -15,7 +15,7 @@ public class CharacterControls : MonoBehaviour
     public float maxVelocityChange = 10.0f;
     public float jumpHeight = 2.0f;
     public float maxFallSpeed = 20.0f;
-    public float standingHeight = 1.6f; // Height of the character when standing
+    public float standingHeight = 2f; // Height of the character when standing
     public float crouchingHeight = 1f; // Height of the character when crouching
     public float crouchingSpeed = 2.5f;
     public float crouchSpeedMultiplier = 0.5f; // Movement speed multiplier when crouching
@@ -81,9 +81,7 @@ public class CharacterControls : MonoBehaviour
         Cursor.visible = false;
 
         currentStamina = maxStamina;
-        staminaSlider = GameObject.Find("Stamina").GetComponent<Slider>();
         staminaSlider.maxValue = maxStamina;
-        standingHeight = GetComponent<CapsuleCollider>().height;
     }
 
 
@@ -316,14 +314,14 @@ public class CharacterControls : MonoBehaviour
         speed = isCrouching ? crouchingSpeed : 5.0f;
     }
 
-    float CalculateJumpVerticalSpeed()
-    {
-        // From the jump height and gravity we deduce the upwards speed 
-        // for the character to reach at the apex.
-        return Mathf.Sqrt(2 * jumpHeight * gravity);
-    }
+        float CalculateJumpVerticalSpeed()
+        {
+            // From the jump height and gravity we deduce the upwards speed 
+            // for the character to reach at the apex.
+            return Mathf.Sqrt(2 * jumpHeight * gravity);
+        }
 
-    private void RotateView(float horizontalInput, float verticalInput)
+        private void RotateView(float horizontalInput, float verticalInput)
     {
         mouseLook.LookRotation(transform, cam.transform);
 

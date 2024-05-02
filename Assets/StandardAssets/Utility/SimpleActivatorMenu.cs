@@ -11,7 +11,9 @@ namespace UnityStandardAssets.Utility
         public Text camSwitchButton;
         public GameObject[] objects;
 
+
         private int m_CurrentActiveObject;
+
 
         private void OnEnable()
         {
@@ -19,6 +21,7 @@ namespace UnityStandardAssets.Utility
             m_CurrentActiveObject = 0;
             camSwitchButton.text = objects[m_CurrentActiveObject].name;
         }
+
 
         public void NextCamera()
         {

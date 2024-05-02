@@ -88,6 +88,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private float m_YRotation;
         private Vector3 m_GroundContactNormal;
         private bool m_Jump, m_PreviouslyGrounded, m_Jumping, m_IsGrounded;
+        private float pushForce;
+        private Vector3 pushDir;
 
 
         public Vector3 Velocity
@@ -260,6 +262,14 @@ namespace UnityStandardAssets.Characters.FirstPerson
             {
                 m_Jumping = false;
             }
+        }
+        public void HitPlayer(Vector3 velocityF, float time)
+        {
+            m_RigidBody.velocity = velocityF;
+
+            pushForce = velocityF.magnitude;
+            pushDir = Vector3.Normalize(velocityF);
+           
         }
     }
 }

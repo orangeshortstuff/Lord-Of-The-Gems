@@ -108,8 +108,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Camera: {fileID: 2000000}
   motionBob:
-    HorizontalBobRange: 0.1
-    VerticalBobRange: 0.05
+    HorizontalBobRange: 0
+    VerticalBobRange: 0
     Bobcurve:
       serializedVersion: 2
       m_Curve:
@@ -164,8 +164,8 @@ MonoBehaviour:
     VerticaltoHorizontalRatio: 2
   jumpAndLandingBob:
     BobDuration: 0.15
-    BobAmount: 0.2
-  charControls: {fileID: 0}
+    BobAmount: 0
+  rigidbodyFirstPersonController: {fileID: 11400004}
   StrideInterval: 4
   RunningStrideLengthen: 0.722
 --- !u!124 &12410568
@@ -275,12 +275,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 2000000}
   movementSettings:
-    ForwardSpeed: 8
-    BackwardSpeed: 4
-    StrafeSpeed: 4
+    ForwardSpeed: 4.5
+    BackwardSpeed: 3
+    StrafeSpeed: 3
     RunMultiplier: 2
-    RunKey: 304
-    JumpForce: 50
+    RunKey: 0
+    JumpForce: 58
     SlopeCurveModifier:
       serializedVersion: 2
       m_Curve:
@@ -316,17 +316,17 @@ MonoBehaviour:
       m_RotationOrder: 4
     CurrentTargetSpeed: 8
   mouseLook:
-    XSensitivity: 2
-    YSensitivity: 2
+    XSensitivity: 8
+    YSensitivity: 8
     clampVerticalRotation: 1
     MinimumX: -45
     MaximumX: 90
-    smooth: 1
+    smooth: 0
     smoothTime: 18
     lockCursor: 1
   advancedSettings:
     groundCheckDistance: 0.1
     stickToGroundHelperDistance: 0.6
     slowDownRate: 20
-    airControl: 0
+    airControl: 1
     shellOffset: 0
