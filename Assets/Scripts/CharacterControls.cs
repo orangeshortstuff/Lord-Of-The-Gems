@@ -22,6 +22,7 @@ public class CharacterControls : MonoBehaviour
     public float sprintSpeed = 10.0f; // Sprinting movement speed
     public float crouchedSprintSpeed = 5.0f; // Sprinting movement speed when crouched
     public Slider staminaSlider;
+  
 
     private bool isCrouching = false;
     private float originalHeight;
@@ -136,12 +137,7 @@ public class CharacterControls : MonoBehaviour
                     //Debug.Log(rb.velocity.magnitude);
                 }
 
-                // Jump
-                if (IsGrounded() && Input.GetButton("Jump"))
-                {
-                    rb.velocity = new Vector3(velocity.x, CalculateJumpVerticalSpeed(), velocity.z);
-
-                }
+               
             }
             else
             {
@@ -196,7 +192,14 @@ public class CharacterControls : MonoBehaviour
             StopCrouch();
         }
 
-        
+        // Deduct stamina for jumping and prevent jumping if not enough stamina
+
+        if (Input.GetButtonDown("Jump") && currentStamina >= jumpStaminaCost)
+        {
+            rb.velocity = new Vector3(rb.velocity.x, CalculateJumpVerticalSpeed(), rb.velocity.z);
+            currentStamina -= jumpStaminaCost;
+        }
+
         // Stamina regeneration
         if (!isSprinting && currentStamina < maxStamina)
         {
@@ -204,12 +207,7 @@ public class CharacterControls : MonoBehaviour
             currentStamina = Mathf.Clamp(currentStamina, 0f, maxStamina);
         }
 
-        // Check if character is on a slide
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position, -Vector3.up, out hit, GetComponent<Collider>().bounds.extents.y + 0.1f))
-        {
-            slide = hit.transform.CompareTag("Slide");
-        }
+       
 
         // If there's no movement input, reset the moveDir vector to zero
         if (moveHorizontal == 0 && moveVertical == 0)
@@ -241,6 +239,7 @@ public class CharacterControls : MonoBehaviour
             currentStamina = Mathf.Clamp(currentStamina, 0f, maxStamina);
         }
     }
+
 
     void UpdateStaminaSlider()
     {

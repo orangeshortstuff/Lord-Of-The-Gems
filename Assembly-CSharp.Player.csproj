@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{34EBBEAF-A5CF-82C2-CB00-588A2DE6D336}</ProjectGuid>
+    <ProjectGuid>{D2A5E7AC-E022-1EC5-688C-85ED532FA83C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -58,39 +58,178 @@
     <Analyzer Include="D:\My Video Games\2022.2.9f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\SampleScenes\Menu\Scripts\PauseMenu.cs" />
+    <Compile Include="Assets\StoreAssets\ObstacleCoursePack\Scripts\FallPlat.cs" />
+    <Compile Include="Assets\StandardAssets\CrossPlatformInput\Scripts\CrossPlatformInputManager.cs" />
+    <Compile Include="Assets\StandardAssets\Utility\FollowTarget.cs" />
+    <Compile Include="Assets\StandardAssets\ParticleSystems\Scripts\AfterburnerPhysicsForce.cs" />
+    <Compile Include="Assets\Extra\SampleScenes\Scripts\PlaceTargetWithMouse.cs" />
+    <Compile Include="Assets\StandardAssets\Environment\Water\Water\Scripts\Water.cs" />
+    <Compile Include="Assets\StandardAssets\Utility\PlatformSpecificContent.cs" />
+    <Compile Include="Assets\StandardAssets\Utility\WaypointProgressTracker.cs" />
+    <Compile Include="Assets\StandardAssets\Utility\LerpControlledBob.cs" />
+    <Compile Include="Assets\StoreAssets\ObstacleCoursePack\Scripts\KillZone.cs" />
+    <Compile Include="Assets\Extra\SampleScenes\Scripts\SlowMoButton.cs" />
+    <Compile Include="Assets\StandardAssets\Environment\Water\Water\Scripts\GerstnerDisplace.cs" />
+    <Compile Include="Assets\StandardAssets\Vehicles\Car\Scripts\CarAIControl.cs" />
+    <Compile Include="Assets\StandardAssets\Utility\WaypointCircuit.cs" />
     <Compile Include="Assets\Scripts\FallOff.cs" />
+    <Compile Include="Assets\StandardAssets\Utility\ForcedReset.cs" />
+    <Compile Include="Assets\StoreAssets\ObstacleCoursePack\Scripts\Rotator.cs" />
+    <Compile Include="Assets\StandardAssets\Vehicles\Aircraft\Scripts\AeroplaneControlSurfaceAnimator.cs" />
+    <Compile Include="Assets\StandardAssets\Utility\TimedObjectDestructor.cs" />
+    <Compile Include="Assets\StandardAssets\Utility\CurveControlledBob.cs" />
+    <Compile Include="Assets\StandardAssets\CrossPlatformInput\Scripts\MobileControlRig.cs" />
+    <Compile Include="Assets\StandardAssets\Environment\Water\Water\Scripts\SpecularLighting.cs" />
+    <Compile Include="Assets\StandardAssets\Characters\FirstPersonCharacter\Scripts\FirstPersonController.cs" />
+    <Compile Include="Assets\StandardAssets\Environment\Water\Water\Scripts\MeshContainer.cs" />
+    <Compile Include="Assets\StoreAssets\Environment\Grass And Flowers Pack 1\Example Scene\SimpleTextureDrawing.cs" />
     <Compile Include="Assets\Scripts\Warp.cs" />
-    <Compile Include="Assets\ObstacleCoursePack\Scripts\Bounce.cs" />
-    <Compile Include="Assets\SampleScenes\Scripts\LevelReset.cs" />
-    <Compile Include="Assets\ObstacleCoursePack\Scripts\FPSDisplay.cs" />
+    <Compile Include="Assets\StandardAssets\Utility\AutoMoveAndRotate.cs" />
+    <Compile Include="Assets\StandardAssets\2D\Scripts\Camera2DFollow.cs" />
+    <Compile Include="Assets\StoreAssets\Environment\Rocks and Boulders 2\Shaders\RotateGameObject.cs" />
+    <Compile Include="Assets\StandardAssets\ParticleSystems\Scripts\SmokeParticles.cs" />
+    <Compile Include="Assets\Scripts\HeadBob.cs" />
+    <Compile Include="Assets\StandardAssets\2D\Scripts\CameraFollow.cs" />
+    <Compile Include="Assets\StoreAssets\ObstacleCoursePack\Scripts\Bounce.cs" />
+    <Compile Include="Assets\StandardAssets\Vehicles\Car\Scripts\CarSelfRighting.cs" />
+    <Compile Include="Assets\StandardAssets\Utility\ParticleSystemDestroyer.cs" />
+    <Compile Include="Assets\Extra\SampleScenes\Scripts\LevelReset.cs" />
+    <Compile Include="Assets\StandardAssets\2D\Scripts\PlatformerCharacter2D.cs" />
+    <Compile Include="Assets\StandardAssets\Utility\FPSCounter.cs" />
     <Compile Include="Assets\Scripts\Portal.cs" />
-    <Compile Include="Assets\ObstacleCoursePack\Scripts\MovableObs.cs" />
-    <Compile Include="Assets\ObstacleCoursePack\Scripts\KillZone.cs" />
+    <Compile Include="Assets\StandardAssets\Vehicles\Aircraft\Scripts\JetParticleEffect.cs" />
+    <Compile Include="Assets\StandardAssets\Utility\TimedObjectActivator.cs" />
+    <Compile Include="Assets\StandardAssets\Cameras\Scripts\LookatTarget.cs" />
+    <Compile Include="Assets\StandardAssets\Vehicles\Aircraft\Scripts\AeroplaneAiControl.cs" />
+    <Compile Include="Assets\StandardAssets\Vehicles\Car\Scripts\Suspension.cs" />
+    <Compile Include="Assets\StandardAssets\ParticleSystems\Scripts\ParticleSystemMultiplier.cs" />
+    <Compile Include="Assets\StandardAssets\Vehicles\Car\Scripts\CarController.cs" />
     <Compile Include="Assets\Scripts\Exit.cs" />
+    <Compile Include="Assets\StandardAssets\Environment\Water\Water\Scripts\PlanarReflection.cs" />
+    <Compile Include="Assets\StandardAssets\Vehicles\Aircraft\Scripts\AeroplaneController.cs" />
+    <Compile Include="Assets\StandardAssets\Vehicles\Aircraft\Scripts\AeroplaneUserControl4Axis.cs" />
+    <Compile Include="Assets\StandardAssets\Utility\SimpleActivatorMenu.cs" />
+    <Compile Include="Assets\StoreAssets\ObstacleCoursePack\Scripts\Pendulum.cs" />
+    <Compile Include="Assets\StandardAssets\Vehicles\Car\Scripts\SkidTrail.cs" />
+    <Compile Include="Assets\StandardAssets\Utility\CameraRefocus.cs" />
+    <Compile Include="Assets\StandardAssets\CrossPlatformInput\Scripts\ButtonHandler.cs" />
+    <Compile Include="Assets\Extra\SampleScenes\Menu\Scripts\SceneAndURLLoader.cs" />
     <Compile Include="Assets\Scripts\WinManager.cs" />
-    <Compile Include="Assets\SampleScenes\Menu\Scripts\SceneAndURLLoader.cs" />
+    <Compile Include="Assets\StandardAssets\Cameras\Scripts\FreeLookCam.cs" />
+    <Compile Include="Assets\StandardAssets\Vehicles\Aircraft\Scripts\AeroplaneUserControl2Axis.cs" />
     <Compile Include="Assets\Scripts\Play.cs" />
     <Compile Include="Assets\Scripts\ScoreManager.cs" />
-    <Compile Include="Assets\SampleScenes\Scripts\PlaceTargetWithMouse.cs" />
-    <Compile Include="Assets\ObstacleCoursePack\Scripts\FallPlat.cs" />
+    <Compile Include="Assets\Extra\SampleScenes\Menu\Scripts\MenuSceneLoader.cs" />
+    <Compile Include="Assets\StandardAssets\Cameras\Scripts\ProtectCameraFromWallClip.cs" />
     <Compile Include="Assets\Scripts\WinTrigger.cs" />
+    <Compile Include="Assets\StandardAssets\Environment\Water\Water\Scripts\WaterTile.cs" />
+    <Compile Include="Assets\StandardAssets\Utility\DragRigidbody.cs" />
+    <Compile Include="Assets\StandardAssets\ParticleSystems\Scripts\ExplosionFireAndDebris.cs" />
+    <Compile Include="Assets\StandardAssets\2D\Scripts\Restarter.cs" />
+    <Compile Include="Assets\StandardAssets\Cameras\Scripts\PivotBasedCameraRig.cs" />
+    <Compile Include="Assets\StoreAssets\ObstacleCoursePack\Scripts\MovableObs.cs" />
+    <Compile Include="Assets\StandardAssets\CrossPlatformInput\Scripts\VirtualInput.cs" />
+    <Compile Include="Assets\StandardAssets\Utility\ObjectResetter.cs" />
+    <Compile Include="Assets\StandardAssets\CrossPlatformInput\Scripts\PlatformSpecific\StandaloneInput.cs" />
+    <Compile Include="Assets\StandardAssets\CrossPlatformInput\Scripts\TiltInput.cs" />
     <Compile Include="Assets\Scripts\StaminaUI.cs" />
+    <Compile Include="Assets\StandardAssets\2D\Scripts\Platformer2DUserControl.cs" />
+    <Compile Include="Assets\StandardAssets\Environment\Water\Water\Scripts\WaterBase.cs" />
     <Compile Include="Assets\Scripts\StunWithRecharge.cs" />
+    <Compile Include="Assets\Extra\SampleScenes\Scripts\CameraSwitch.cs" />
     <Compile Include="Assets\Scripts\CharacterControls.cs" />
-    <Compile Include="Assets\ObstacleCoursePack\Scripts\Rotator.cs" />
-    <Compile Include="Assets\ObstacleCoursePack\Scripts\WallMovable.cs" />
-    <Compile Include="Assets\ObstacleCoursePack\Controller\CameraManager.cs" />
-    <Compile Include="Assets\SampleScenes\Scripts\ParticleSceneControls.cs" />
+    <Compile Include="Assets\StandardAssets\Utility\SmoothFollow.cs" />
+    <Compile Include="Assets\StandardAssets\Vehicles\Aircraft\Scripts\LandingGear.cs" />
+    <Compile Include="Assets\Extra\SampleScenes\Menu\Scripts\PauseMenu.cs" />
+    <Compile Include="Assets\StandardAssets\Utility\DynamicShadowSettings.cs" />
+    <Compile Include="Assets\StandardAssets\Utility\FOVKick.cs" />
+    <Compile Include="Assets\StandardAssets\Vehicles\Car\Scripts\CarUserControl.cs" />
+    <Compile Include="Assets\StoreAssets\ObstacleCoursePack\Scripts\FPSDisplay.cs" />
     <Compile Include="Assets\Scripts\TextureScaler.cs" />
+    <Compile Include="Assets\Extra\SampleScenes\Scripts\ParticleSceneControls.cs" />
     <Compile Include="Assets\Scripts\Collectable.cs" />
+    <Compile Include="Assets\StandardAssets\Utility\SimpleMouseRotator.cs" />
+    <Compile Include="Assets\StandardAssets\Characters\RollerBall\Scripts\BallUserControl.cs" />
+    <Compile Include="Assets\StandardAssets\Vehicles\Car\Scripts\CarAudio.cs" />
+    <Compile Include="Assets\StandardAssets\Vehicles\Car\Scripts\BrakeLight.cs" />
+    <Compile Include="Assets\StandardAssets\Environment\Water\Water\Scripts\Displace.cs" />
+    <Compile Include="Assets\StandardAssets\ParticleSystems\Scripts\Explosive.cs" />
+    <Compile Include="Assets\StandardAssets\Cameras\Scripts\AbstractTargetFollower.cs" />
+    <Compile Include="Assets\StandardAssets\Characters\FirstPersonCharacter\Scripts\MouseLook.cs" />
+    <Compile Include="Assets\StoreAssets\ObstacleCoursePack\Scripts\WallMovable.cs" />
     <Compile Include="Assets\Scripts\Timer.cs" />
-    <Compile Include="Assets\ObstacleCoursePack\Scripts\SavePos.cs" />
+    <Compile Include="Assets\StandardAssets\Utility\AutoMobileShaderSwitch.cs" />
+    <Compile Include="Assets\StandardAssets\Characters\FirstPersonCharacter\Scripts\RigidbodyFirstPersonController.cs" />
+    <Compile Include="Assets\StandardAssets\Characters\ThirdPersonCharacter\Scripts\ThirdPersonCharacter.cs" />
+    <Compile Include="Assets\StandardAssets\Vehicles\Aircraft\Scripts\AeroplanePropellerAnimator.cs" />
+    <Compile Include="Assets\StandardAssets\Utility\EventSystemChecker.cs" />
+    <Compile Include="Assets\StandardAssets\CrossPlatformInput\Scripts\PlatformSpecific\MobileInput.cs" />
+    <Compile Include="Assets\StandardAssets\Vehicles\Car\Scripts\WheelEffects.cs" />
+    <Compile Include="Assets\StandardAssets\Vehicles\Car\Scripts\Mudguard.cs" />
+    <Compile Include="Assets\StandardAssets\CrossPlatformInput\Scripts\InputAxisScrollbar.cs" />
+    <Compile Include="Assets\StandardAssets\CrossPlatformInput\Scripts\TouchPad.cs" />
+    <Compile Include="Assets\StandardAssets\Vehicles\Aircraft\Scripts\AeroplaneAudio.cs" />
+    <Compile Include="Assets\StandardAssets\Characters\RollerBall\Scripts\Ball.cs" />
+    <Compile Include="Assets\Scripts\ScalableUI.cs" />
+    <Compile Include="Assets\StandardAssets\ParticleSystems\Scripts\WaterHoseParticles.cs" />
+    <Compile Include="Assets\StoreAssets\ObstacleCoursePack\Scripts\SavePos.cs" />
+    <Compile Include="Assets\StandardAssets\ParticleSystems\Scripts\FireLight.cs" />
     <Compile Include="Assets\Scripts\GemWall.cs" />
-    <Compile Include="Assets\ObstacleCoursePack\Scripts\Pendulum.cs" />
-    <Compile Include="Assets\SampleScenes\Menu\Scripts\MenuSceneLoader.cs" />
-    <Compile Include="Assets\SampleScenes\Scripts\SlowMoButton.cs" />
-    <Compile Include="Assets\SampleScenes\Scripts\CameraSwitch.cs" />
+    <Compile Include="Assets\StandardAssets\Characters\ThirdPersonCharacter\Scripts\ThirdPersonUserControl.cs" />
+    <Compile Include="Assets\StandardAssets\Cameras\Scripts\AutoCam.cs" />
+    <Compile Include="Assets\StandardAssets\Cameras\Scripts\TargetFieldOfView.cs" />
+    <Compile Include="Assets\StandardAssets\CrossPlatformInput\Scripts\AxisTouchButton.cs" />
+    <Compile Include="Assets\StandardAssets\Environment\Water (Basic)\Scripts\WaterBasic.cs" />
+    <Compile Include="Assets\StandardAssets\Characters\ThirdPersonCharacter\Scripts\AICharacterControl.cs" />
+    <Compile Include="Assets\StandardAssets\Characters\FirstPersonCharacter\Scripts\HeadBob.cs" />
+    <Compile Include="Assets\StandardAssets\ParticleSystems\Scripts\Hose.cs" />
+    <Compile Include="Assets\StandardAssets\Utility\AlphaButtonClickMask.cs" />
+    <Compile Include="Assets\StandardAssets\ParticleSystems\Scripts\ExtinguishableParticleSystem.cs" />
+    <Compile Include="Assets\StandardAssets\CrossPlatformInput\Scripts\Joystick.cs" />
+    <Compile Include="Assets\StoreAssets\ObstacleCoursePack\Controller\CameraManager.cs" />
+    <Compile Include="Assets\StandardAssets\Utility\ActivateTrigger.cs" />
+    <Compile Include="Assets\StandardAssets\Cameras\Scripts\HandHeldCam.cs" />
+    <Compile Include="Assets\StandardAssets\ParticleSystems\Scripts\ExplosionPhysicsForce.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\StandardAssets\Prototyping\Shaders\WorldCoordDiffuse.shader" />
+    <None Include="Assets\StandardAssets\Effects\Projectors\Shaders\ProjectorLight.shader" />
+    <None Include="Assets\StandardAssets\Effects\Projectors\Shaders\ProjectorMultiply.shader" />
+    <None Include="Assets\StoreAssets\Environment\Rocks and Boulders 2\Shaders\Blend SM2.shader" />
+    <None Include="Assets\StandardAssets\Effects\Projectors\Guidelines.txt" />
+    <None Include="Assets\StandardAssets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
+    <None Include="Assets\StandardAssets\Environment\Water\Water4\Shaders\WaterInclude.cginc" />
+    <None Include="Assets\StandardAssets\Effects\ToonShading\Shaders\ToonLitOutline.shader" />
+    <None Include="Assets\StandardAssets\Vehicles\Car\CarGuidelines.txt" />
+    <None Include="Assets\StandardAssets\Vehicles\Aircraft\AircraftGuidelines.txt" />
+    <None Include="Assets\StandardAssets\Cameras\CameraGuidelines.txt" />
+    <None Include="Assets\StandardAssets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />
+    <None Include="Assets\StoreAssets\Environment\Rocks and Boulders 2\Shaders\Blend SM3.shader" />
+    <None Include="Assets\StandardAssets\Vehicles\Car\Shaders\ReflectiveDiffuseSpecTransp.shader" />
+    <None Include="Assets\StandardAssets\Environment\Water\Water4\Shaders\FXWater4Advanced.shader" />
+    <None Include="Assets\StandardAssets\Environment\Water (Basic)\DO_NOT_WORK_IN_VR.txt" />
+    <None Include="Assets\StandardAssets\Effects\ToonShading\Shaders\ToonLit.shader" />
+    <None Include="Assets\StoreAssets\Environment\Rocks and Boulders 2\Shaders\shader info.txt" />
+    <None Include="Assets\StandardAssets\Effects\ToonShading\Shaders\ToonBasic.shader" />
+    <None Include="Assets\StandardAssets\ParticleSystems\ParticleSystemsGuidelines.txt" />
+    <None Include="Assets\StandardAssets\Effects\TessellationShaders\Shaders\BumpedSpecularSmooth.shader" />
+    <None Include="Assets\StandardAssets\ParticleSystems\Shaders\PriorityParticleAddSoft.shader" />
+    <None Include="Assets\StandardAssets\Environment\Water\DO_NOT_WORK_IN_VR.txt" />
+    <None Include="Assets\StandardAssets\Effects\TessellationShaders\Shaders\BumpedSpecularDisplacement.shader" />
+    <None Include="Assets\StandardAssets\Environment\Water\Water4\Shaders\FXWater4Simple.shader" />
+    <None Include="Assets\StandardAssets\Effects\ImageEffects\Readme.txt" />
+    <None Include="Assets\StandardAssets\Characters\RollerBall\RollerBallGuidelines.txt" />
+    <None Include="Assets\StandardAssets\Environment\Water\Water\Shaders\FXWaterPro.shader" />
+    <None Include="Assets\StandardAssets\ParticleSystems\Shaders\PriorityParticleAdd.shader" />
+    <None Include="Assets\StandardAssets\Effects\ToonShading\Shaders\ToonBasicOutline.shader" />
+    <None Include="Assets\StandardAssets\Characters\FirstPersonCharacter\FirstPersonCharacterGuidelines.txt" />
+    <None Include="Assets\StandardAssets\ParticleSystems\Shaders\PriorityParticleAlpha.shader" />
+    <None Include="Assets\StoreAssets\Environment\Grass And Flowers Pack 1\Example Scene\Skyboxes\_skybox info.txt" />
+    <None Include="Assets\StandardAssets\Environment\Water (Basic)\Shaders\FXWaterBasic.shader" />
+    <None Include="Assets\StandardAssets\Vehicles\Car\Shaders\DiffuseReflectiveShader.shader" />
+    <None Include="Assets\StandardAssets\Characters\ThirdPersonCharacter\ThirdPersonCharacterGuidelines.txt" />
+    <None Include="Assets\StandardAssets\Vehicles\Car\Shaders\ReflectiveDiffuseSpec.shader" />
+    <None Include="Assets\StandardAssets\Fonts\OpenSans\License!.txt" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -683,10 +822,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="Assembly-CSharp-firstpass.Player.csproj">
-      <Project>{D34FE1D0-7267-96AA-A549-72DB5EC0EEF2}</Project>
-      <Name>Assembly-CSharp-firstpass.Player</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
