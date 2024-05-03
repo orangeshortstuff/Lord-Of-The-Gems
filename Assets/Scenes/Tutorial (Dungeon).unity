@@ -5687,6 +5687,28 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 19cda612420587a48ae0790bfcffb919, type: 3}
+--- !u!114 &477248546 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7521702639369143251, guid: 19cda612420587a48ae0790bfcffb919, type: 3}
+  m_PrefabInstance: {fileID: 477248545}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3d703c1ad902ae4ea6907ffd9886592, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &477248547 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2400468199458495660, guid: 19cda612420587a48ae0790bfcffb919, type: 3}
+  m_PrefabInstance: {fileID: 477248545}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f94d1985f31dfc4080bb7b3a9603229, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &479111065
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17266,8 +17288,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   respawnHeight: -10
   spawn: {x: 0, y: 0, z: 0}
-  sm: {fileID: 0}
-  timer: {fileID: 0}
+  sm: {fileID: 477248547}
+  timer: {fileID: 477248546}
 --- !u!1001 &1414523543
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -58,7 +58,9 @@ public class CharacterControls : MonoBehaviour
     public float currentStamina;
     public float staminaRegenRate = 5f; // Stamina regenerated per second
     public float sprintStaminaCost = 25f; // Stamina cost per second while sprinting
+    public float jumpStaminaCost = 25f; //Stamina cost per second while jumping
     private bool isSprinting = false;
+    private bool isJumping = false;
 
 
     void Start()
@@ -138,6 +140,7 @@ public class CharacterControls : MonoBehaviour
                 if (IsGrounded() && Input.GetButton("Jump"))
                 {
                     rb.velocity = new Vector3(velocity.x, CalculateJumpVerticalSpeed(), velocity.z);
+
                 }
             }
             else
