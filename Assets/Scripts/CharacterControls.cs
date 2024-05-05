@@ -9,7 +9,6 @@ using UnityEngine.UI;
 public class CharacterControls : MonoBehaviour
 {
     public float speed = 5.0f;
-    public float runSpeed = 10.0f;
     public float airVelocity = 8f;
     public float gravity = 10.0f;
     public float maxVelocityChange = 10.0f;
@@ -62,7 +61,7 @@ public class CharacterControls : MonoBehaviour
     public float jumpStaminaCost = 25f; //Stamina cost per second while jumping
     private bool isSprinting = false;
     private bool isJumping = false;
-
+    private PowerupManager pm;
 
     void Start()
     {
@@ -85,10 +84,9 @@ public class CharacterControls : MonoBehaviour
 
         currentStamina = maxStamina;
         staminaSlider.maxValue = maxStamina;
+
+        pm = GetComponent<PowerupManager>();
     }
-
-
-
 
     bool IsGrounded()
     {
@@ -114,6 +112,7 @@ public class CharacterControls : MonoBehaviour
                 // Calculate how fast we should be moving
                 Vector3 targetVelocity = moveDir;
                 targetVelocity *= speed;
+                targetVelocity *= pm.speedMultiplier;
 
                 // Apply a force that attempts to reach our target velocity
                 Vector3 velocity = rb.velocity;
@@ -143,7 +142,7 @@ public class CharacterControls : MonoBehaviour
             {
                 if (!slide)
                 {
-                    Vector3 targetVelocity = new Vector3(moveDir.x * airVelocity, rb.velocity.y, moveDir.z * airVelocity);
+                    Vector3 targetVelocity = new Vector3(moveDir.x * airVelocity * pm.speedMultiplier, rb.velocity.y, moveDir.z * airVelocity * pm.speedMultiplier);
                     Vector3 velocity = rb.velocity;
                     Vector3 velocityChange = (targetVelocity - velocity);
                     velocityChange.x = Mathf.Clamp(velocityChange.x, -maxVelocityChange, maxVelocityChange);
@@ -193,21 +192,13 @@ public class CharacterControls : MonoBehaviour
         }
 
         // Deduct stamina for jumping and prevent jumping if not enough stamina
-
-        if (Input.GetButtonDown("Jump") && currentStamina >= jumpStaminaCost)
+        if (Input.GetButtonDown("Jump") && (currentStamina >= jumpStaminaCost || pm.freeJumps))
         {
             rb.velocity = new Vector3(rb.velocity.x, CalculateJumpVerticalSpeed(), rb.velocity.z);
-            currentStamina -= jumpStaminaCost;
+            if (!pm.freeJumps) {
+                currentStamina -= jumpStaminaCost;
+            }
         }
-
-        // Stamina regeneration
-        if (!isSprinting && currentStamina < maxStamina)
-        {
-            currentStamina += staminaRegenRate * Time.deltaTime;
-            currentStamina = Mathf.Clamp(currentStamina, 0f, maxStamina);
-        }
-
-       
 
         // If there's no movement input, reset the moveDir vector to zero
         if (moveHorizontal == 0 && moveVertical == 0)
@@ -238,6 +229,12 @@ public class CharacterControls : MonoBehaviour
             currentStamina += staminaRegenRate * Time.deltaTime;
             currentStamina = Mathf.Clamp(currentStamina, 0f, maxStamina);
         }
+
+        // using a powerup if the player has one
+        if (Input.GetKeyDown(KeyCode.E) && pm.state == PowerupManager.PowerupState.Inactive) {
+            pm.state = PowerupManager.PowerupState.Active;
+            pm.timeLeft = pm.duration;
+        }
     }
 
 
@@ -256,9 +253,6 @@ public class CharacterControls : MonoBehaviour
             // Reduce the height of the character
             transform.localScale = new Vector3(transform.localScale.x, crouchingHeight, transform.localScale.z);
 
-            // Optionally adjust camera position if needed
-            // For example, lower the camera position to match the new height
-
             // Optionally adjust movement speed
             // For example, reduce movement speed when crouching
             speed *= crouchSpeedMultiplier;
@@ -272,9 +266,6 @@ public class CharacterControls : MonoBehaviour
 
             // Restore the height of the character
             transform.localScale = new Vector3(transform.localScale.x, standingHeight, transform.localScale.z);
-
-            // Optionally adjust camera position if needed
-            // For example, raise the camera position to match the standing height
 
             // Optionally restore movement speed
             // For example, restore the original movement speed
@@ -304,26 +295,28 @@ public class CharacterControls : MonoBehaviour
 
     IEnumerator Sprint()
     {
-        float sprintSpeedToUse = isCrouching ? crouchedSprintSpeed : runSpeed;
+        float sprintSpeedToUse = isCrouching ? crouchedSprintSpeed : sprintSpeed;
 
         while (isSprinting && currentStamina > 0)
         {
             speed = sprintSpeedToUse;
-            currentStamina -= sprintStaminaCost * Time.deltaTime;
+            if (!pm.freeSprint) {
+                currentStamina -= sprintStaminaCost * Time.deltaTime;
+            }
             yield return null;
         }
 
         speed = isCrouching ? crouchingSpeed : 5.0f;
     }
 
-        float CalculateJumpVerticalSpeed()
-        {
-            // From the jump height and gravity we deduce the upwards speed 
-            // for the character to reach at the apex.
-            return Mathf.Sqrt(2 * jumpHeight * gravity);
-        }
+    float CalculateJumpVerticalSpeed()
+    {
+        // From the jump height and gravity we deduce the upwards speed 
+        // for the character to reach at the apex.
+        return Mathf.Sqrt(2 * jumpHeight * pm.heightMultiplier * gravity);
+    }
 
-        private void RotateView(float horizontalInput, float verticalInput)
+    private void RotateView(float horizontalInput, float verticalInput)
     {
         mouseLook.LookRotation(transform, cam.transform);
 
