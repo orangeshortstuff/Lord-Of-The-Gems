@@ -60,7 +60,6 @@ public class CharacterControls : MonoBehaviour
     public float sprintStaminaCost = 25f; // Stamina cost per second while sprinting
     public float jumpStaminaCost = 25f; //Stamina cost per second while jumping
     private bool isSprinting = false;
-    private bool isJumping = false;
     private PowerupManager pm;
 
     void Start()
