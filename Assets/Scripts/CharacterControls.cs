@@ -112,7 +112,6 @@ public class CharacterControls : MonoBehaviour
                 // Calculate how fast we should be moving
                 Vector3 targetVelocity = moveDir;
                 targetVelocity *= speed;
-                targetVelocity *= pm.speedMultiplier;
 
                 // Apply a force that attempts to reach our target velocity
                 Vector3 velocity = rb.velocity;
@@ -192,7 +191,7 @@ public class CharacterControls : MonoBehaviour
         }
 
         // Deduct stamina for jumping and prevent jumping if not enough stamina
-        if (Input.GetButtonDown("Jump") && (currentStamina >= jumpStaminaCost || pm.freeJumps))
+        if (Input.GetButtonDown("Jump") && (currentStamina >= jumpStaminaCost || pm.freeJumps) && IsGrounded())
         {
             rb.velocity = new Vector3(rb.velocity.x, CalculateJumpVerticalSpeed(), rb.velocity.z);
             if (!pm.freeJumps) {
@@ -299,14 +298,14 @@ public class CharacterControls : MonoBehaviour
 
         while (isSprinting && currentStamina > 0)
         {
-            speed = sprintSpeedToUse;
+            speed = sprintSpeedToUse * pm.speedMultiplier;
             if (!pm.freeSprint) {
                 currentStamina -= sprintStaminaCost * Time.deltaTime;
             }
             yield return null;
         }
 
-        speed = isCrouching ? crouchingSpeed : 5.0f;
+        speed = isCrouching ? crouchingSpeed * pm.speedMultiplier : 5.0f * pm.speedMultiplier;
     }
 
     float CalculateJumpVerticalSpeed()
