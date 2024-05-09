@@ -17,6 +17,7 @@ public class CharacterControls : MonoBehaviour
     public float standingHeight = 2f; // Height of the character when standing
     public float crouchingHeight = 1f; // Height of the character when crouching
     public float crouchingSpeed = 2.5f;
+    public float walkSpeed = 5.0f;
     public float crouchSpeedMultiplier = 0.5f; // Movement speed multiplier when crouching
     public float sprintSpeed = 10.0f; // Sprinting movement speed
     public float crouchedSprintSpeed = 5.0f; // Sprinting movement speed when crouched
@@ -58,7 +59,6 @@ public class CharacterControls : MonoBehaviour
     public float currentStamina;
     public float staminaRegenRate = 5f; // Stamina regenerated per second
     public float sprintStaminaCost = 25f; // Stamina cost per second while sprinting
-    public float jumpStaminaCost = 25f; //Stamina cost per second while jumping
     private bool isSprinting = false;
     private PowerupManager pm;
 
@@ -85,6 +85,7 @@ public class CharacterControls : MonoBehaviour
         staminaSlider.maxValue = maxStamina;
 
         pm = GetComponent<PowerupManager>();
+        walkSpeed = speed;
     }
 
     bool IsGrounded()
@@ -190,12 +191,9 @@ public class CharacterControls : MonoBehaviour
         }
 
         // Deduct stamina for jumping and prevent jumping if not enough stamina
-        if (Input.GetButtonDown("Jump") && (currentStamina >= jumpStaminaCost || pm.freeJumps) && IsGrounded())
+        if (Input.GetButtonDown("Jump") && IsGrounded())
         {
             rb.velocity = new Vector3(rb.velocity.x, CalculateJumpVerticalSpeed(), rb.velocity.z);
-            if (!pm.freeJumps) {
-                currentStamina -= jumpStaminaCost;
-            }
         }
 
         // If there's no movement input, reset the moveDir vector to zero
@@ -304,7 +302,7 @@ public class CharacterControls : MonoBehaviour
             yield return null;
         }
 
-        speed = isCrouching ? crouchingSpeed * pm.speedMultiplier : 5.0f * pm.speedMultiplier;
+        speed = isCrouching ? crouchingSpeed * pm.speedMultiplier : walkSpeed * pm.speedMultiplier;
     }
 
     float CalculateJumpVerticalSpeed()

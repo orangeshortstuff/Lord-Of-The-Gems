@@ -10,8 +10,8 @@ public class Powerup : MonoBehaviour
     public PowerupType type;
     GameObject player;
     Renderer rend;
-    CharacterControls cc;
     AudioSource audio;
+    PickupMessage message;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +19,7 @@ public class Powerup : MonoBehaviour
         rend = GetComponent<Renderer>();
         rend.enabled = true;
         audio = GetComponent<AudioSource>();
+        message = GameObject.Find("powerAlert").GetComponent<PickupMessage>();
     }
 
     // Update is called once per frame
@@ -34,6 +35,11 @@ public class Powerup : MonoBehaviour
             rend.enabled = false;
             cooldownTimer = respawnTime;
             audio.Play(0);
+            if (type == PowerupType.JumpBoost) {
+                message.SetMessage("You got a Jump Boost!", 4);
+            } else if (type == PowerupType.SpeedBoost) {
+                message.SetMessage("You got a Speed Boost!", 4);
+            }
         }
         cooldownTimer -= Time.deltaTime;
         if (cooldownTimer < 0) {
