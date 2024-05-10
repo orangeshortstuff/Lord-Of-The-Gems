@@ -17,7 +17,6 @@ public class CharacterControls : MonoBehaviour
     public float standingHeight = 2f; // Height of the character when standing
     public float crouchingHeight = 1f; // Height of the character when crouching
     public float crouchingSpeed = 2.5f;
-    public float walkSpeed = 5.0f;
     public float crouchSpeedMultiplier = 0.5f; // Movement speed multiplier when crouching
     public float sprintSpeed = 10.0f; // Sprinting movement speed
     public float crouchedSprintSpeed = 5.0f; // Sprinting movement speed when crouched
@@ -59,7 +58,9 @@ public class CharacterControls : MonoBehaviour
     public float currentStamina;
     public float staminaRegenRate = 5f; // Stamina regenerated per second
     public float sprintStaminaCost = 25f; // Stamina cost per second while sprinting
+    public float jumpStaminaCost = 25f; //Stamina cost per second while jumping
     private bool isSprinting = false;
+    private bool isJumping = false;
     private PowerupManager pm;
 
     void Start()
@@ -85,7 +86,6 @@ public class CharacterControls : MonoBehaviour
         staminaSlider.maxValue = maxStamina;
 
         pm = GetComponent<PowerupManager>();
-        walkSpeed = speed;
     }
 
     bool IsGrounded()
@@ -112,6 +112,7 @@ public class CharacterControls : MonoBehaviour
                 // Calculate how fast we should be moving
                 Vector3 targetVelocity = moveDir;
                 targetVelocity *= speed;
+                targetVelocity *= pm.speedMultiplier;
 
                 // Apply a force that attempts to reach our target velocity
                 Vector3 velocity = rb.velocity;
@@ -191,9 +192,12 @@ public class CharacterControls : MonoBehaviour
         }
 
         // Deduct stamina for jumping and prevent jumping if not enough stamina
-        if (Input.GetButtonDown("Jump") && IsGrounded())
+        if (Input.GetButtonDown("Jump") && (currentStamina >= jumpStaminaCost || pm.freeJumps))
         {
             rb.velocity = new Vector3(rb.velocity.x, CalculateJumpVerticalSpeed(), rb.velocity.z);
+            if (!pm.freeJumps) {
+                currentStamina -= jumpStaminaCost;
+            }
         }
 
         // If there's no movement input, reset the moveDir vector to zero
@@ -295,14 +299,14 @@ public class CharacterControls : MonoBehaviour
 
         while (isSprinting && currentStamina > 0)
         {
-            speed = sprintSpeedToUse * pm.speedMultiplier;
+            speed = sprintSpeedToUse;
             if (!pm.freeSprint) {
                 currentStamina -= sprintStaminaCost * Time.deltaTime;
             }
             yield return null;
         }
 
-        speed = isCrouching ? crouchingSpeed * pm.speedMultiplier : walkSpeed * pm.speedMultiplier;
+        speed = isCrouching ? crouchingSpeed : 5.0f;
     }
 
     float CalculateJumpVerticalSpeed()

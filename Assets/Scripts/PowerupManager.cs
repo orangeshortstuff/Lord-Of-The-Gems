@@ -28,9 +28,8 @@ public class PowerupManager : MonoBehaviour
         speedMultiplier = 1;
         freeJumps = false;
         freeSprint = false;
-
-        if (state == PowerupState.Active) { // if the powerup is in use, apply effects
-            timeLeft -= Time.deltaTime; // and count down the timer
+        if (state == PowerupState.Active) {
+            timeLeft -= Time.deltaTime;
             if (type == PowerupType.JumpBoost) {
                 heightMultiplier = 2;
                 freeJumps = true;
@@ -40,7 +39,7 @@ public class PowerupManager : MonoBehaviour
                 freeSprint = true;
             }
         }
-        if (timeLeft < 0) { // if the time runs out, you don't have a powerup any more
+        if (timeLeft < 0) {
             timeLeft = 0;
             state = PowerupState.None;
         }
