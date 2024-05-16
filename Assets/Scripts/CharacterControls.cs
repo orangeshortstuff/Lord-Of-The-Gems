@@ -9,20 +9,19 @@ using UnityEngine.UI;
 public class CharacterControls : MonoBehaviour
 {
     public float speed = 5.0f;
-    public float runSpeed = 10.0f;
     public float airVelocity = 8f;
     public float gravity = 10.0f;
     public float maxVelocityChange = 10.0f;
     public float jumpHeight = 2.0f;
     public float maxFallSpeed = 20.0f;
-    public float standingHeight = 2f; // Height of the character when standing
-    public float crouchingHeight = 1f; // Height of the character when crouching
+    public float standingHeight = 2f;
+    public float crouchingHeight = 1f;
     public float crouchingSpeed = 2.5f;
-    public float crouchSpeedMultiplier = 0.5f; // Movement speed multiplier when crouching
-    public float sprintSpeed = 10.0f; // Sprinting movement speed
-    public float crouchedSprintSpeed = 5.0f; // Sprinting movement speed when crouched
+    public float walkSpeed = 5.0f;
+    public float crouchSpeedMultiplier = 0.5f;
+    public float sprintSpeed = 10.0f;
+    public float crouchedSprintSpeed = 5.0f;
     public Slider staminaSlider;
-  
 
     private bool isCrouching = false;
     private float originalHeight;
@@ -33,62 +32,62 @@ public class CharacterControls : MonoBehaviour
 
     private float distToGround;
 
-    private bool canMove = true; // If player is not hitted
+    private bool canMove = true;
     private bool isStunned = false;
-    private bool wasStunned = false; // If player was stunned before getting stunned another time
+    private bool wasStunned = false;
     private float pushForce;
     private Vector3 pushDir;
 
     public Vector3 checkPoint;
     private bool slide = false;
 
-    private Camera cam; // Declare the cam variable
+    private Camera cam;
 
     // Audio variables
     public AudioClip[] footstepSounds;
-    // Step interval variables
-    public float stepInterval = 0.5f; 
+    public float walkStepInterval = 0.5f;
+    public float sprintStepInterval = 0.25f;
+    private float stepInterval;
     private float nextStepTime = 0f;
     public AudioClip jumpSound;
     public AudioClip landSound;
     private AudioSource audioSource;
 
     private bool isWalking;
+    private bool wasGrounded;
 
     public float maxStamina = 100f;
     public float currentStamina;
-    public float staminaRegenRate = 5f; // Stamina regenerated per second
-    public float sprintStaminaCost = 25f; // Stamina cost per second while sprinting
-    public float jumpStaminaCost = 25f; //Stamina cost per second while jumping
+    public float staminaRegenRate = 5f;
+    public float sprintStaminaCost = 25f;
     private bool isSprinting = false;
-    private bool isJumping = false;
-
+    private PowerupManager pm;
 
     void Start()
     {
-        // get the distance to ground
         distToGround = GetComponent<Collider>().bounds.extents.y;
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
 
-        // Assign the main camera to the cam variable
         cam = Camera.main;
         originalHeight = transform.localScale.y;
 
-        // Initialize the mouseLook object
         mouseLook.Init(transform, cam.transform);
 
-        // Get reference to AudioSource component
         audioSource = GetComponent<AudioSource>();
 
         Cursor.visible = false;
 
         currentStamina = maxStamina;
+        staminaSlider = GameObject.Find("Stamina").GetComponent<Slider>();
         staminaSlider.maxValue = maxStamina;
+
+        pm = GetComponent<PowerupManager>();
+        walkSpeed = speed;
+
+        // Initialize the step interval to walking step interval
+        stepInterval = walkStepInterval;
     }
-
-
-
 
     bool IsGrounded()
     {
@@ -101,23 +100,20 @@ public class CharacterControls : MonoBehaviour
         {
             if (moveDir.x != 0 || moveDir.z != 0)
             {
-                Vector3 targetDir = moveDir; //Direction of the character
-
+                Vector3 targetDir = moveDir;
                 targetDir.y = 0;
                 if (targetDir == Vector3.zero)
                     targetDir = transform.forward;
-                Quaternion tr = Quaternion.LookRotation(targetDir); //Rotation of the character to where it moves
+                Quaternion tr = Quaternion.LookRotation(targetDir);
             }
 
             if (IsGrounded())
             {
-                // Calculate how fast we should be moving
                 Vector3 targetVelocity = moveDir;
                 targetVelocity *= speed;
 
-                // Apply a force that attempts to reach our target velocity
                 Vector3 velocity = rb.velocity;
-                if (targetVelocity.magnitude < velocity.magnitude) //If I'm slowing down the character
+                if (targetVelocity.magnitude < velocity.magnitude)
                 {
                     targetVelocity = velocity;
                     rb.velocity /= 1.1f;
@@ -134,16 +130,13 @@ public class CharacterControls : MonoBehaviour
                 else if (Mathf.Abs(rb.velocity.magnitude) < speed * 1.0f)
                 {
                     rb.AddForce(moveDir * 0.15f, ForceMode.VelocityChange);
-                    //Debug.Log(rb.velocity.magnitude);
                 }
-
-               
             }
             else
             {
                 if (!slide)
                 {
-                    Vector3 targetVelocity = new Vector3(moveDir.x * airVelocity, rb.velocity.y, moveDir.z * airVelocity);
+                    Vector3 targetVelocity = new Vector3(moveDir.x * airVelocity * pm.speedMultiplier, rb.velocity.y, moveDir.z * airVelocity * pm.speedMultiplier);
                     Vector3 velocity = rb.velocity;
                     Vector3 velocityChange = (targetVelocity - velocity);
                     velocityChange.x = Mathf.Clamp(velocityChange.x, -maxVelocityChange, maxVelocityChange);
@@ -162,7 +155,6 @@ public class CharacterControls : MonoBehaviour
         {
             rb.velocity = pushDir * pushForce;
         }
-        // We apply gravity manually for more tuning control
         rb.AddForce(new Vector3(0, -gravity * rb.mass, 0));
     }
 
@@ -170,19 +162,16 @@ public class CharacterControls : MonoBehaviour
     {
         UpdateStaminaSlider();
 
-        // Input handling for mouse movement
         float h = Input.GetAxis("Mouse X");
         float v = Input.GetAxis("Mouse Y");
         RotateView(h, v);
 
-        // Input handling for movement
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
 
         Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
         moveDir = cam.transform.TransformDirection(movement).normalized;
 
-        // Check if the "C" key is held down
         if (Input.GetKey(KeyCode.C))
         {
             StartCrouch();
@@ -192,37 +181,32 @@ public class CharacterControls : MonoBehaviour
             StopCrouch();
         }
 
-        // Deduct stamina for jumping and prevent jumping if not enough stamina
-
-        if (Input.GetButtonDown("Jump") && currentStamina >= jumpStaminaCost)
+        if (Input.GetButtonDown("Jump") && IsGrounded())
         {
             rb.velocity = new Vector3(rb.velocity.x, CalculateJumpVerticalSpeed(), rb.velocity.z);
-            currentStamina -= jumpStaminaCost;
+            audioSource.PlayOneShot(jumpSound);
         }
 
-        // Stamina regeneration
-        if (!isSprinting && currentStamina < maxStamina)
-        {
-            currentStamina += staminaRegenRate * Time.deltaTime;
-            currentStamina = Mathf.Clamp(currentStamina, 0f, maxStamina);
-        }
-
-       
-
-        // If there's no movement input, reset the moveDir vector to zero
         if (moveHorizontal == 0 && moveVertical == 0)
         {
             moveDir = Vector3.zero;
         }
 
-        // Play footstep sounds
+        isWalking = moveHorizontal != 0 || moveVertical != 0;
+
         if (isWalking && IsGrounded() && Time.time > nextStepTime)
         {
             PlayFootstepAudio();
-            nextStepTime = Time.time + stepInterval; // Update next step time
+            nextStepTime = Time.time + stepInterval;
         }
 
-        // Sprinting
+        if (IsGrounded() && !wasGrounded)
+        {
+            audioSource.PlayOneShot(landSound);
+        }
+
+        wasGrounded = IsGrounded();
+
         if (Input.GetKeyDown(KeyCode.LeftShift) && currentStamina > 0)
         {
             SetSprint(true);
@@ -232,18 +216,23 @@ public class CharacterControls : MonoBehaviour
             SetSprint(false);
         }
 
-        // Stamina regeneration
         if (!isSprinting && currentStamina < maxStamina)
         {
             currentStamina += staminaRegenRate * Time.deltaTime;
             currentStamina = Mathf.Clamp(currentStamina, 0f, maxStamina);
         }
-    }
 
+        if (Input.GetKeyDown(KeyCode.E) && pm.state == PowerupManager.PowerupState.Inactive)
+        {
+            pm.state = PowerupManager.PowerupState.Active;
+            pm.timeLeft = pm.duration;
+        }
+
+
+    }
 
     void UpdateStaminaSlider()
     {
-        // Update the stamina slider value
         staminaSlider.value = currentStamina;
     }
 
@@ -252,42 +241,26 @@ public class CharacterControls : MonoBehaviour
         if (!isCrouching)
         {
             isCrouching = true;
-
-            // Reduce the height of the character
             transform.localScale = new Vector3(transform.localScale.x, crouchingHeight, transform.localScale.z);
-
-            // Optionally adjust camera position if needed
-            // For example, lower the camera position to match the new height
-
-            // Optionally adjust movement speed
-            // For example, reduce movement speed when crouching
             speed *= crouchSpeedMultiplier;
         }
     }
+
     void StopCrouch()
     {
         if (isCrouching)
         {
             isCrouching = false;
-
-            // Restore the height of the character
             transform.localScale = new Vector3(transform.localScale.x, standingHeight, transform.localScale.z);
-
-            // Optionally adjust camera position if needed
-            // For example, raise the camera position to match the standing height
-
-            // Optionally restore movement speed
-            // For example, restore the original movement speed
             speed /= crouchSpeedMultiplier;
         }
     }
-    // Play footstep sounds
+
     void PlayFootstepAudio()
     {
         if (footstepSounds.Length == 0)
             return;
 
-        // Randomly select a footstep sound from the array
         int index = Random.Range(0, footstepSounds.Length);
         audioSource.clip = footstepSounds[index];
         audioSource.PlayOneShot(audioSource.clip);
@@ -296,6 +269,7 @@ public class CharacterControls : MonoBehaviour
     void SetSprint(bool sprint)
     {
         isSprinting = sprint;
+        stepInterval = sprint ? sprintStepInterval : walkStepInterval;
         if (sprint)
         {
             StartCoroutine(Sprint());
@@ -304,29 +278,29 @@ public class CharacterControls : MonoBehaviour
 
     IEnumerator Sprint()
     {
-        float sprintSpeedToUse = isCrouching ? crouchedSprintSpeed : runSpeed;
+        float sprintSpeedToUse = isCrouching ? crouchedSprintSpeed : sprintSpeed;
 
         while (isSprinting && currentStamina > 0)
         {
-            speed = sprintSpeedToUse;
-            currentStamina -= sprintStaminaCost * Time.deltaTime;
+            speed = sprintSpeedToUse * pm.speedMultiplier;
+            if (!pm.freeSprint)
+            {
+                currentStamina -= sprintStaminaCost * Time.deltaTime;
+            }
             yield return null;
         }
 
-        speed = isCrouching ? crouchingSpeed : 5.0f;
+        speed = isCrouching ? crouchingSpeed * pm.speedMultiplier : walkSpeed * pm.speedMultiplier;
     }
 
-        float CalculateJumpVerticalSpeed()
-        {
-            // From the jump height and gravity we deduce the upwards speed 
-            // for the character to reach at the apex.
-            return Mathf.Sqrt(2 * jumpHeight * gravity);
-        }
+    float CalculateJumpVerticalSpeed()
+    {
+        return Mathf.Sqrt(2 * jumpHeight * pm.heightMultiplier * gravity);
+    }
 
-        private void RotateView(float horizontalInput, float verticalInput)
+    private void RotateView(float horizontalInput, float verticalInput)
     {
         mouseLook.LookRotation(transform, cam.transform);
-
     }
 
     public void HitPlayer(Vector3 velocityF, float time)
@@ -355,12 +329,12 @@ public class CharacterControls : MonoBehaviour
         for (float t = 0; t < duration; t += Time.deltaTime)
         {
             yield return null;
-            if (!slide) //Reduce the force if the ground isnt slide
+            if (!slide)
             {
                 pushForce = pushForce - Time.deltaTime * delta;
                 pushForce = pushForce < 0 ? 0 : pushForce;
             }
-            rb.AddForce(new Vector3(0, -gravity * rb.mass, 0)); // Add gravity
+            rb.AddForce(new Vector3(0, -gravity * rb.mass, 0));
         }
 
         if (wasStunned)
@@ -372,5 +346,19 @@ public class CharacterControls : MonoBehaviour
             isStunned = false;
             canMove = true;
         }
+    }
+    bool IsNearWall(out Vector3 hitNormal)
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, transform.right, out hit, 1.0f))
+        {
+            if (hit.collider.CompareTag("WallRun")) // Check if the collider belongs to a wall with the "WallRun" tag
+            {
+                hitNormal = hit.normal;
+                return true;
+            }
+        }
+        hitNormal = Vector3.zero;
+        return false;
     }
 }

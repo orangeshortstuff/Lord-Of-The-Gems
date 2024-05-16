@@ -16,6 +16,7 @@ public class Portal : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log((transform.position - player.transform.position).magnitude);
         if ((transform.position - player.transform.position).magnitude < 1) {
             Debug.Log("load scene");
             SceneManager.LoadScene(scene);
