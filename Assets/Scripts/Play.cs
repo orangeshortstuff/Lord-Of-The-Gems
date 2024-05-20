@@ -13,6 +13,6 @@ public class Play : MonoBehaviour
 
     public void OnClick()
     {
-        SceneManager.LoadScene("TestWorld");
+        SceneManager.LoadScene("Tutorial (Dungeon)");
     }
 }
