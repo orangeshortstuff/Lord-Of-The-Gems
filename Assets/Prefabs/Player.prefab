@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 965978468508321701}
   - component: {fileID: 6461945704625119914}
   - component: {fileID: 8808013571076344431}
+  - component: {fileID: 4114734938755070512}
   - component: {fileID: 6781520768940426586}
   - component: {fileID: 8076112738875428860}
   - component: {fileID: 3452256317212986709}
@@ -33,12 +34,12 @@ Transform:
   m_GameObject: {fileID: 3109783783170049332}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -3.51, y: 1.77, z: -4.39}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2111180446853910385}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!54 &6461945704625119914
 Rigidbody:
@@ -90,6 +91,29 @@ CapsuleCollider:
   m_Height: 1.6
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!136 &4114734938755070512
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3109783783170049332}
+  m_Material: {fileID: 13400000, guid: c2815a7ab32e42c4bb42f59caacb8ec1, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.6
+  m_Height: 1.5
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.2, z: 0}
 --- !u!114 &6781520768940426586
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178,7 +202,7 @@ MonoBehaviour:
   maxVelocityChange: 10
   jumpHeight: 5
   maxFallSpeed: 20
-  standingHeight: 1
+  standingHeight: 1.5
   crouchingHeight: 0.5
   crouchingSpeed: 5
   walkSpeed: 10
@@ -240,7 +264,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 0
   Mute: 0
