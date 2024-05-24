@@ -7,7 +7,7 @@ public class StaminaUI : MonoBehaviour
     public float deletionDuration = 5f; // Duration for the gradual deletion (in seconds)
 
     private float maxStamina;
-    private float currentStamina;
+    public float currentStamina;
     private float deletionStartTime;
     private bool isDeletionInProgress = false;
 
