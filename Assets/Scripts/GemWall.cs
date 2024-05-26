@@ -6,18 +6,20 @@ public class GemDoor : MonoBehaviour
 {
     public ScoreManager sm;
     public int gemRequirement;
+    PickupMessage message;
     // Start is called before the first frame update
     void Start()
     {
         sm = GameObject.Find("score").GetComponent<ScoreManager>();
-        gemRequirement = 100;
+        message = GameObject.Find("powerAlert").GetComponent<PickupMessage>();
     }
 
     // Update is called once per frame
     void Update()
     {
         if(sm.score >= gemRequirement) {
-            gameObject.SetActive(false);
+            message.SetMessage("A gem door has been unlocked.", 5);
+            gameObject.SetActive(false); // disable the running of all scripts, renderers, colliders, etc.
         }
     }
 }

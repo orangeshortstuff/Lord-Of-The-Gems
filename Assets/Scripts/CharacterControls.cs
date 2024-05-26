@@ -5,6 +5,7 @@ using UnityEngine.Windows;
 using Input = UnityEngine.Input;
 using UnityEditor;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class CharacterControls : MonoBehaviour
 {
@@ -228,6 +229,10 @@ public class CharacterControls : MonoBehaviour
             pm.timeLeft = pm.duration;
         }
 
+        if (Input.GetKey(KeyCode.R))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
 
     }
 
