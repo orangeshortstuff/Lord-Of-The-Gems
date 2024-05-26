@@ -17,7 +17,7 @@ public class Portal : MonoBehaviour
     void Update()
     {
         Debug.Log((transform.position - player.transform.position).magnitude);
-        if ((transform.position - player.transform.position).magnitude < 1) {
+        if ((transform.position - player.transform.position).magnitude < 1.5f) {
             Debug.Log("load scene");
             SceneManager.LoadScene(scene);
         }
