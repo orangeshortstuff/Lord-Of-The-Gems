@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class PowerupUI : MonoBehaviour
 {
+    
     public PowerupManager pm;
     public Text powerText;
     // Start is called before the first frame update
@@ -19,9 +20,12 @@ public class PowerupUI : MonoBehaviour
     void Update()
     {
         powerText.text = "";
-        if (pm.state == PowerupManager.PowerupState.Inactive) {
+        if (pm.state == PowerupManager.PowerupState.Inactive)
+        {
             powerText.text = "Press E to use";
-        } else if (pm.state == PowerupManager.PowerupState.Active) {
+        }
+        else if (pm.state == PowerupManager.PowerupState.Active)
+        {
             powerText.text = "Time left: " + pm.timeLeft.ToString("0.00") + "s";
         }
     }
