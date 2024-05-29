@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -953,6 +953,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3679615379644003567, guid: b75b95881b3b4444498345a27954fdb0, type: 3}
+      propertyPath: m_Intensity
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 7531092702043822171, guid: b75b95881b3b4444498345a27954fdb0, type: 3}
       propertyPath: m_Name
       value: Torch (9)
@@ -1691,6 +1695,10 @@ PrefabInstance:
     - target: {fileID: 2813320798146824307, guid: b75b95881b3b4444498345a27954fdb0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3679615379644003567, guid: b75b95881b3b4444498345a27954fdb0, type: 3}
+      propertyPath: m_Intensity
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7531092702043822171, guid: b75b95881b3b4444498345a27954fdb0, type: 3}
       propertyPath: m_Name
@@ -3086,6 +3094,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3679615379644003567, guid: b75b95881b3b4444498345a27954fdb0, type: 3}
+      propertyPath: m_Intensity
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 7531092702043822171, guid: b75b95881b3b4444498345a27954fdb0, type: 3}
       propertyPath: m_Name
       value: Torch (6)
@@ -4010,6 +4022,10 @@ PrefabInstance:
     - target: {fileID: 2813320798146824307, guid: b75b95881b3b4444498345a27954fdb0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3679615379644003567, guid: b75b95881b3b4444498345a27954fdb0, type: 3}
+      propertyPath: m_Intensity
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7531092702043822171, guid: b75b95881b3b4444498345a27954fdb0, type: 3}
       propertyPath: m_Name
@@ -5076,6 +5092,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3679615379644003567, guid: b75b95881b3b4444498345a27954fdb0, type: 3}
+      propertyPath: m_Intensity
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 7531092702043822171, guid: b75b95881b3b4444498345a27954fdb0, type: 3}
       propertyPath: m_Name
       value: Torch (7)
@@ -5949,6 +5969,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3679615379644003567, guid: b75b95881b3b4444498345a27954fdb0, type: 3}
+      propertyPath: m_Intensity
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 7531092702043822171, guid: b75b95881b3b4444498345a27954fdb0, type: 3}
       propertyPath: m_Name
       value: Torch (13)
@@ -6423,7 +6447,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3679615379644003567, guid: b75b95881b3b4444498345a27954fdb0, type: 3}
       propertyPath: m_Intensity
-      value: 10
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3679615379644003567, guid: b75b95881b3b4444498345a27954fdb0, type: 3}
       propertyPath: m_Shadows.m_Strength
@@ -9634,6 +9658,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1886774570}
     m_Modifications:
+    - target: {fileID: 1427770836028970832, guid: dfbffe33a60c96c479e6f0282670c675, type: 3}
+      propertyPath: m_Intensity
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2005073029516573459, guid: dfbffe33a60c96c479e6f0282670c675, type: 3}
+      propertyPath: m_Intensity
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2749311802490441459, guid: dfbffe33a60c96c479e6f0282670c675, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -9681,6 +9713,14 @@ PrefabInstance:
     - target: {fileID: 2896880022343488181, guid: dfbffe33a60c96c479e6f0282670c675, type: 3}
       propertyPath: m_Name
       value: Cell Closed
+      objectReference: {fileID: 0}
+    - target: {fileID: 3390031789496627804, guid: dfbffe33a60c96c479e6f0282670c675, type: 3}
+      propertyPath: m_Intensity
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8053216740692537119, guid: dfbffe33a60c96c479e6f0282670c675, type: 3}
+      propertyPath: m_Intensity
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11369,6 +11409,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3679615379644003567, guid: b75b95881b3b4444498345a27954fdb0, type: 3}
+      propertyPath: m_Intensity
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 7531092702043822171, guid: b75b95881b3b4444498345a27954fdb0, type: 3}
       propertyPath: m_Name
       value: Torch (5)
@@ -11835,6 +11879,10 @@ PrefabInstance:
     - target: {fileID: 2813320798146824307, guid: b75b95881b3b4444498345a27954fdb0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3679615379644003567, guid: b75b95881b3b4444498345a27954fdb0, type: 3}
+      propertyPath: m_Intensity
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7531092702043822171, guid: b75b95881b3b4444498345a27954fdb0, type: 3}
       propertyPath: m_Name
@@ -14750,6 +14798,10 @@ PrefabInstance:
     - target: {fileID: 2813320798146824307, guid: b75b95881b3b4444498345a27954fdb0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3679615379644003567, guid: b75b95881b3b4444498345a27954fdb0, type: 3}
+      propertyPath: m_Intensity
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7531092702043822171, guid: b75b95881b3b4444498345a27954fdb0, type: 3}
       propertyPath: m_Name
@@ -17955,6 +18007,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1886774570}
     m_Modifications:
+    - target: {fileID: 1427770836028970832, guid: dfbffe33a60c96c479e6f0282670c675, type: 3}
+      propertyPath: m_Intensity
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2005073029516573459, guid: dfbffe33a60c96c479e6f0282670c675, type: 3}
+      propertyPath: m_Intensity
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2749311802490441459, guid: dfbffe33a60c96c479e6f0282670c675, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -18002,6 +18062,14 @@ PrefabInstance:
     - target: {fileID: 2896880022343488181, guid: dfbffe33a60c96c479e6f0282670c675, type: 3}
       propertyPath: m_Name
       value: Cell Closed (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3390031789496627804, guid: dfbffe33a60c96c479e6f0282670c675, type: 3}
+      propertyPath: m_Intensity
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8053216740692537119, guid: dfbffe33a60c96c479e6f0282670c675, type: 3}
+      propertyPath: m_Intensity
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -18313,6 +18381,10 @@ PrefabInstance:
     - target: {fileID: 2813320798146824307, guid: b75b95881b3b4444498345a27954fdb0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3679615379644003567, guid: b75b95881b3b4444498345a27954fdb0, type: 3}
+      propertyPath: m_Intensity
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7531092702043822171, guid: b75b95881b3b4444498345a27954fdb0, type: 3}
       propertyPath: m_Name
@@ -21104,6 +21176,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3679615379644003567, guid: b75b95881b3b4444498345a27954fdb0, type: 3}
+      propertyPath: m_Intensity
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 7531092702043822171, guid: b75b95881b3b4444498345a27954fdb0, type: 3}
       propertyPath: m_Name
       value: Torch (11)
@@ -21485,6 +21561,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1918523175}
     m_Modifications:
+    - target: {fileID: 1427770836028970832, guid: dfbffe33a60c96c479e6f0282670c675, type: 3}
+      propertyPath: m_Intensity
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2005073029516573459, guid: dfbffe33a60c96c479e6f0282670c675, type: 3}
+      propertyPath: m_Intensity
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 2749311802490441459, guid: dfbffe33a60c96c479e6f0282670c675, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -21532,6 +21616,14 @@ PrefabInstance:
     - target: {fileID: 2896880022343488181, guid: dfbffe33a60c96c479e6f0282670c675, type: 3}
       propertyPath: m_Name
       value: Cell Closed
+      objectReference: {fileID: 0}
+    - target: {fileID: 3390031789496627804, guid: dfbffe33a60c96c479e6f0282670c675, type: 3}
+      propertyPath: m_Intensity
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8053216740692537119, guid: dfbffe33a60c96c479e6f0282670c675, type: 3}
+      propertyPath: m_Intensity
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -21598,6 +21690,22 @@ PrefabInstance:
     - target: {fileID: 650828596316787552, guid: 3c53a963641400b47a651f51310d4dba, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 853279905844534873, guid: 3c53a963641400b47a651f51310d4dba, type: 3}
+      propertyPath: m_Intensity
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4035742924519118717, guid: 3c53a963641400b47a651f51310d4dba, type: 3}
+      propertyPath: m_Intensity
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5330391125195440730, guid: 3c53a963641400b47a651f51310d4dba, type: 3}
+      propertyPath: m_Intensity
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6121382732224926881, guid: 3c53a963641400b47a651f51310d4dba, type: 3}
+      propertyPath: m_Intensity
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -21737,6 +21845,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Coridor under Parkour
       objectReference: {fileID: 0}
+    - target: {fileID: 2234185085747993369, guid: 113ae563d00b94d47bf8d12c38f1a8cb, type: 3}
+      propertyPath: m_Intensity
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4257600198203434020, guid: 113ae563d00b94d47bf8d12c38f1a8cb, type: 3}
+      propertyPath: m_Intensity
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6198953429453864241, guid: 113ae563d00b94d47bf8d12c38f1a8cb, type: 3}
+      propertyPath: m_Intensity
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6665359260627446484, guid: 113ae563d00b94d47bf8d12c38f1a8cb, type: 3}
+      propertyPath: m_Intensity
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -21755,6 +21879,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1886774570}
     m_Modifications:
+    - target: {fileID: 3067977549142509794, guid: 734f93d43222889438801cbf4e87a5f6, type: 3}
+      propertyPath: m_Intensity
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3527494569240138119, guid: 734f93d43222889438801cbf4e87a5f6, type: 3}
+      propertyPath: m_Intensity
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4794834062651424738, guid: 734f93d43222889438801cbf4e87a5f6, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -21799,6 +21931,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5093815446729443517, guid: 734f93d43222889438801cbf4e87a5f6, type: 3}
+      propertyPath: m_Intensity
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6751305770351612277, guid: 734f93d43222889438801cbf4e87a5f6, type: 3}
       propertyPath: m_Name
       value: Coridor under Stairs
@@ -21806,6 +21942,10 @@ PrefabInstance:
     - target: {fileID: 8965813822333407989, guid: 734f93d43222889438801cbf4e87a5f6, type: 3}
       propertyPath: m_LocalPosition.z
       value: -236.616
+      objectReference: {fileID: 0}
+    - target: {fileID: 9175008864096090695, guid: 734f93d43222889438801cbf4e87a5f6, type: 3}
+      propertyPath: m_Intensity
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -21820,6 +21960,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1886774570}
     m_Modifications:
+    - target: {fileID: 428746080478076922, guid: b1e4be9aa63756f48a427f8286383a72, type: 3}
+      propertyPath: m_Intensity
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 904672920249912317, guid: b1e4be9aa63756f48a427f8286383a72, type: 3}
+      propertyPath: m_Intensity
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1202024418680175541, guid: b1e4be9aa63756f48a427f8286383a72, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -21868,6 +22016,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Coridor under End
       objectReference: {fileID: 0}
+    - target: {fileID: 3971276324815307940, guid: b1e4be9aa63756f48a427f8286383a72, type: 3}
+      propertyPath: m_Intensity
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9061376357923289703, guid: b1e4be9aa63756f48a427f8286383a72, type: 3}
+      propertyPath: m_Intensity
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -21881,9 +22037,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1918523175}
     m_Modifications:
+    - target: {fileID: 801934932736081024, guid: fee7b4e3aaa150948b2e39c46c39be70, type: 3}
+      propertyPath: m_Intensity
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 1287921801759074481, guid: fee7b4e3aaa150948b2e39c46c39be70, type: 3}
       propertyPath: m_Name
       value: Cell
+      objectReference: {fileID: 0}
+    - target: {fileID: 3815219721924156904, guid: fee7b4e3aaa150948b2e39c46c39be70, type: 3}
+      propertyPath: m_Intensity
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5975161811780251087, guid: fee7b4e3aaa150948b2e39c46c39be70, type: 3}
+      propertyPath: m_Intensity
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7011797487864368244, guid: fee7b4e3aaa150948b2e39c46c39be70, type: 3}
       propertyPath: m_RootOrder
@@ -21929,6 +22097,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8664989907199580626, guid: fee7b4e3aaa150948b2e39c46c39be70, type: 3}
+      propertyPath: m_Intensity
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -21947,9 +22119,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1886774570}
     m_Modifications:
+    - target: {fileID: 488216974474986230, guid: 94ce079b1d0da5b4395a1ef05eea74bc, type: 3}
+      propertyPath: m_Intensity
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2016291963802995481, guid: 94ce079b1d0da5b4395a1ef05eea74bc, type: 3}
       propertyPath: m_Name
       value: Coridor normal End
+      objectReference: {fileID: 0}
+    - target: {fileID: 4465487203449258355, guid: 94ce079b1d0da5b4395a1ef05eea74bc, type: 3}
+      propertyPath: m_Intensity
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4978225875682362133, guid: 94ce079b1d0da5b4395a1ef05eea74bc, type: 3}
+      propertyPath: m_Intensity
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6811662639813537379, guid: 94ce079b1d0da5b4395a1ef05eea74bc, type: 3}
+      propertyPath: m_Intensity
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8533443788780225673, guid: 94ce079b1d0da5b4395a1ef05eea74bc, type: 3}
       propertyPath: m_RootOrder
@@ -22013,6 +22201,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1886774570}
     m_Modifications:
+    - target: {fileID: 3009591034488468583, guid: b15313d9cd17a5045ab6276046d04d51, type: 3}
+      propertyPath: m_Intensity
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4447980406085669424, guid: b15313d9cd17a5045ab6276046d04d51, type: 3}
+      propertyPath: m_Intensity
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4991834043187586489, guid: b15313d9cd17a5045ab6276046d04d51, type: 3}
       propertyPath: m_Name
       value: Coridor Cross section
@@ -22060,6 +22256,14 @@ PrefabInstance:
     - target: {fileID: 5183196858630111041, guid: b15313d9cd17a5045ab6276046d04d51, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8769541465443263580, guid: b15313d9cd17a5045ab6276046d04d51, type: 3}
+      propertyPath: m_Intensity
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9028654764487505469, guid: b15313d9cd17a5045ab6276046d04d51, type: 3}
+      propertyPath: m_Intensity
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -22152,9 +22356,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1886774570}
     m_Modifications:
+    - target: {fileID: 1243359314293739466, guid: 0fd26c5031bf85b43b705321c9c7f914, type: 3}
+      propertyPath: m_Intensity
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6113068245806181546, guid: 0fd26c5031bf85b43b705321c9c7f914, type: 3}
       propertyPath: m_Name
       value: Coridor under left side end
+      objectReference: {fileID: 0}
+    - target: {fileID: 6159313132980314777, guid: 0fd26c5031bf85b43b705321c9c7f914, type: 3}
+      propertyPath: m_Intensity
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6545902150150016400, guid: 0fd26c5031bf85b43b705321c9c7f914, type: 3}
+      propertyPath: m_Intensity
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7682195909907762992, guid: 0fd26c5031bf85b43b705321c9c7f914, type: 3}
+      propertyPath: m_Intensity
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 9194291009831046835, guid: 0fd26c5031bf85b43b705321c9c7f914, type: 3}
       propertyPath: m_RootOrder
