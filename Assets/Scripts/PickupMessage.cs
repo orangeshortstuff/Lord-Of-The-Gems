@@ -20,7 +20,7 @@ public class PickupMessage : MonoBehaviour
     void Update() {
         timer += Time.deltaTime;
         float alpha = Mathf.Min(1,((duration - timer) / duration) * 2); // hold at max opacity for half the time, then fade out
-        text.color = new Color(1f,1f,1f, alpha); // why god why does it make me do this
+        text.color = new Color(1f,1f,1f, alpha); // set the colour to white, with the current opacity / alpha
         outline.effectColor = new Color(0f, 0f, 0f, alpha * 0.735f); // multiply the text alpha by the base outline alpha
         if (timer > duration) {
             text.text = "";

@@ -26,14 +26,15 @@ public class FallOff : MonoBehaviour
     {
         if(gameObject.transform.position.y < respawnHeight) {
             GameObject gemList = GameObject.Find("gems");
-            // find all gems, including inactive ones
-            Transform[] gems = gemList.GetComponentsInChildren<Transform>(true);
+            // get all transforms in child objects, skipping the parent - find all gems
+            Transform[] gems = gemList.GetComponentsInChildren<Transform>(true).Skip(1).ToArray();
             //Debug.Log(gems.Length);
             
             // take only inactive ones
             List<Transform> inactiveGems = new List<Transform>();
             foreach (Transform g in gems) {
-                if (g.gameObject.activeInHierarchy != true) {
+                Renderer rend = g.gameObject.GetComponent<Renderer>();
+                if (rend.enabled != true) {
                     inactiveGems.Add(g);
                 }
             }
@@ -47,7 +48,7 @@ public class FallOff : MonoBehaviour
             int maxGemsSpawned = Mathf.Min(10, Mathf.CeilToInt(inactiveGems.Count / 8.0f));
             sm.AddScore(-1 * maxGemsSpawned); // subtract from score
             for (int i = 0; i < maxGemsSpawned; i++) {
-                inactiveGems[i].gameObject.SetActive(true); // and re-activate the nearest gems
+                inactiveGems[i].gameObject.GetComponent<Renderer>().enabled = true; // and re-activate the nearest gems
             }
 
             // respawn the player, at last

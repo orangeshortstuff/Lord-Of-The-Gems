@@ -21,11 +21,9 @@ public class Collectable : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if ((transform.position - player.transform.position).magnitude < 1 && rend.enabled) {
-            //Debug.Log("pick up");
-            //gameObject.SetActive(false);
-            rend.enabled = false;
-            sm.AddScore(1);
+        if ((transform.position - player.transform.position).magnitude < 2f && rend.enabled) {
+            rend.enabled = false; // make the gem invisible
+            sm.AddScore(1); // add a point
             // play sound effect with a random pitch
             audio.pitch = Random.Range(0.9f, 1.2f);
             audio.Play(0);
