@@ -22,7 +22,7 @@ public class WinManager : MonoBehaviour
             winText.text = "You Win!";
             // in future, maybe call for name entry for leaderboard?
         } else if (lost) {
-            winText.text = "You Lost";
+            winText.text = "You Lost!";
         }
     }
 }

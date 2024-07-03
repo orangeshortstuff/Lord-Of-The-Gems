@@ -32,6 +32,7 @@ public class Timer : MonoBehaviour
         if (timeLeft < 0) {
             wm.lost = true;
         }
-        timerText.text = "Time left: " + timeLeft.ToString("0.00") + "s";
+        timerText.text = "Time left: " + timeLeft.ToString("0.00");
+        //timerText.text = "Time left: " + timeLeft.ToString("0.00") + "s";
     }
 }
