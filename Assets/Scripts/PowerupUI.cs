@@ -26,7 +26,8 @@ public class PowerupUI : MonoBehaviour
         }
         else if (pm.state == PowerupManager.PowerupState.Active)
         {
-            powerText.text = "Time left: " + pm.timeLeft.ToString("0.00") + "s";
+            powerText.text = "Time left: " + pm.timeLeft.ToString("0.00");
+            //powerText.text = "Time left: " + pm.timeLeft.ToString("0.00") + "s";
         }
     }
 }
